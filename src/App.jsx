@@ -1,88 +1,83 @@
 
-import NavBar from "./components/navbar"
-import Header from "./components/header"
-import Counter from "./components/counter"
-import Cards from "./components/cards"
+import NavBar from "src/components/Navbar.jsx"
+import Header from "src/components/Header.jsx"
+import Card from "src/components/Cards.jsx"
+
 import { useState } from "react"
 
-
-
-
-
 function App() {
+
   const [recipeType, setRecipeType] = useState("breakfast")
+
   const recipes = [
     {
-      name:"panner starter",
-      username:"sumith veduri",
-      time:20,
-      servers:2,
-      image:"https://cookifi.com/blog/wp-content/uploads/2017/05/paneer-1.jpg",
-      type:"breakfast"
+      name: "Raw Veggie Chopped Salad",
+      username: "Ratna Kumari",
+      time: 10,
+      servers: 2,
+      image: "https://cleanfoodcrush.com/wp-content/uploads/2015/05/Chop-Chop-Fresh-Veggie-Salad.jpg",
+      type: "breakfast"
     },
     {
-      name:"Savory breakfast bowl veg",
-      username:"sumith veduri",
-      time:15,
-      servers:1,
-      image:"https://cookifi.com/blog/wp-content/uploads/2017/05/paneer-1.jpg",
-      type:"dinner"
+      name: "Buger",
+      username: "karan",
+      time: 20,
+      servers: 1,
+      image: "https://www.seriouseats.com/thmb/e16lLOoVEix_JZTv7iNyAuWkPn8=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__recipes__images__2014__09__20140918-jamie-olivers-comfort-food-insanity-burger-david-loftus-f7d9042bdc2a468fbbd50b10d467dafd.jpg",
+      type: "appetizers"
     },
     {
-      name:"panner starter",
-      username:"sumith veduri",
-      time:10,
-      servers:2,
-      image:"https://cookifi.com/blog/wp-content/uploads/2017/05/paneer-1.jpg"
+      name: "Pasta",
+      username: "Ratna Kumari",
+      time: 30,
+      servers: 3,
+      image: "https://www.acouplecooks.com/wp-content/uploads/2023/01/Red-Sauce-Pasta-008.jpg",
+      type: "beverages"
     },
     {
-      name:"panner starter",
-      username:"sumith veduri",
-      time:20,
-      servers:2,
-      image:"https://cookifi.com/blog/wp-content/uploads/2017/05/paneer-1.jpg"
+      name: "Pizza",
+      username: "Ratna Kumari",
+      time: 40,
+      servers: 4,
+      image: "https://hips.hearstapps.com/hmg-prod/images/classic-cheese-pizza-recipe-2-64429a0cb408b.jpg?crop=0.6666666666666667xw:1xh;center,top&resize=1200:*",
+      type: "dessert"
     },
     {
-      name:"Savory breakfast bowl veg",
-      username:"karan",
-      time:15,
-      servers:1,
-      image:"https://cookifi.com/blog/wp-content/uploads/2017/05/paneer-1.jpg"
+      name: "Sandwich",
+      username: "Ratna Kumari",
+      time: 50,
+      servers: 5,
+      image: "https://www.southernliving.com/thmb/UW4kKKL-_M3WgP7pkL6Pb6lwcgM=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Ham_Sandwich_011-1-49227336bc074513aaf8fdbde440eafe.jpg",
+      type: "breakfast"
     },
     {
-      name:"panner starter",
-      username:"puja",
-      time:10,
-      servers:2,
-      image:"https://cookifi.com/blog/wp-content/uploads/2017/05/paneer-1.jpg",
-      type:"lunch"
+      name: "Spicy Chicken",
+      username: "Ratna Kumari",
+      time: 60,
+      servers: 6,
+      image: "https://www.licious.in/blog/wp-content/uploads/2020/12/Spicy-Chicken.jpg",
+      type: "appetizers"
     }
   ]
 
-
-
-
-
   return (
     <>
-        <NavBar/>
-        <Header type = {recipeType} changeRecipe = {setRecipeType}/>
-        <div className="grid grid-cols-4 gap-4 p-10">
-
-       {
-          recipes.map((recipe,index) => {
-            if(recipeType===recipe.type || recipeType==="all")
-            return <card key={index} recipe={recipe}/>
-          
-
-          })
-  
-       }
-
-         
-        </div>
-       {/* <Counter/> */} 
+      <NavBar />
+      <Header type={recipeType}  changeRecipe={setRecipeType} />
+      {/* <Counter /> */}
+      <div className="grid grid-cols-4 gap-20 p-8 h-96">
+     {
+      // [Card, Card]
+        recipes.map((recipe, index) => {
+          if (recipeType === recipe.type || recipeType === "all"){
+            return <Card key={index} recipe= {recipe}/>
+          }
+        }) 
+     }
+      </div>
     </>
   )
 }
-export default App
+
+
+export default App;
