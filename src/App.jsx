@@ -1,64 +1,56 @@
 
-import NavBar from "src/components/Navbar.jsx"
-import Header from "src/components/Header.jsx"
-import Card from "src/components/Cards.jsx"
+import NavBar from "./Navbar.jsx"
+import Header from "./Header.jsx"
+import Card from "./Cards.jsx"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
+/*
+what is use effect?
+- use effect is a hook that lets you perform side effects in your functional components.
+- it is a close replacement for componentsDidmount, componentDidUpdate, and componentWillUnMount.
+- it is called after the component has been rendered to the screen.
+- it is used to fetch data, add event listeners, and perform other side effects
+*/
+
+function fetchRecipes(){
+  const url = "http://localhost:5000/recipes"
+  data = fetch(url)
+
+  console.log(data);
+}
 function App() {
 
   const [recipeType, setRecipeType] = useState("breakfast")
+  const [recipes,setRecipes] = useState([])
 
-  const recipes = [
-    {
-      name: "Raw Veggie Chopped Salad",
-      username: "Ratna Kumari",
-      time: 10,
-      servers: 2,
-      image: "https://cleanfoodcrush.com/wp-content/uploads/2015/05/Chop-Chop-Fresh-Veggie-Salad.jpg",
-      type: "breakfast"
-    },
-    {
-      name: "Buger",
-      username: "karan",
-      time: 20,
-      servers: 1,
-      image: "https://www.seriouseats.com/thmb/e16lLOoVEix_JZTv7iNyAuWkPn8=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__recipes__images__2014__09__20140918-jamie-olivers-comfort-food-insanity-burger-david-loftus-f7d9042bdc2a468fbbd50b10d467dafd.jpg",
-      type: "appetizers"
-    },
-    {
-      name: "Pasta",
-      username: "Ratna Kumari",
-      time: 30,
-      servers: 3,
-      image: "https://www.acouplecooks.com/wp-content/uploads/2023/01/Red-Sauce-Pasta-008.jpg",
-      type: "beverages"
-    },
-    {
-      name: "Pizza",
-      username: "Ratna Kumari",
-      time: 40,
-      servers: 4,
-      image: "https://hips.hearstapps.com/hmg-prod/images/classic-cheese-pizza-recipe-2-64429a0cb408b.jpg?crop=0.6666666666666667xw:1xh;center,top&resize=1200:*",
-      type: "dessert"
-    },
-    {
-      name: "Sandwich",
-      username: "Ratna Kumari",
-      time: 50,
-      servers: 5,
-      image: "https://www.southernliving.com/thmb/UW4kKKL-_M3WgP7pkL6Pb6lwcgM=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Ham_Sandwich_011-1-49227336bc074513aaf8fdbde440eafe.jpg",
-      type: "breakfast"
-    },
-    {
-      name: "Spicy Chicken",
-      username: "Ratna Kumari",
-      time: 60,
-      servers: 6,
-      image: "https://www.licious.in/blog/wp-content/uploads/2020/12/Spicy-Chicken.jpg",
-      type: "appetizers"
-    }
-  ]
+  
+  useEffect(() => {
+    //console.log("use effect called")
+    //
+
+    const url = "http://localhost:5000/recipes"
+    //fetch function used to make a network request
+    //fetch is a function  returns a promise, which we need to handle using .then
+    // and then function takes a callback function as an arguments
+    // the callback function will be called when the promise is resolved with data returned byt the server
+    fetch(url).then((response)=>{
+      return Response.json()
+    })
+
+    .then((data)=>{
+      setRecipes(data['recipes'])
+    })
+  }, [])
+
+  // below effect  will only runs when recipe type changes
+  // this useEffect will check recipe type changed or not in every render
+  //if recipe type  changed then it will be  run
+  // if recipe type not changed then it will not run
+  useEffect(() => {
+    console.log("recipe type changed")
+  }, [recipeType])
+  console.log("app component renderd")
 
   return (
     <>
@@ -80,4 +72,4 @@ function App() {
 }
 
 
-export default App;
+export default App
