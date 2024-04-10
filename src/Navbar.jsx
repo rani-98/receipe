@@ -30,9 +30,13 @@ function NavBar() {
       <h1>React Recipe App</h1>
       <ul className="flex justify-end gap-2 w-full">
         
-        <button className={currentPage === "Home" ? pageStyle : pointer} onClick={homeClick}>Home</button>
-        <button className={currentPage === "Recipes" ? pageStyle : pointer} onClick={recipesClick}>Recipes</button>
-        <button className={currentPage === "add" ? pageStyle : pointer} onClick={addClick}>add recipes</button>
+        <li className={currentPage === "Home" ? pageStyle : pointer} onClick={homeClick}>
+          <link to="/home">Home</link>
+          </li>
+        <li className={currentPage === "Recipes" ? pageStyle : pointer} onClick={recipesClick}>
+        <link to="/recipes">Recipes</link></li>
+        <li className={currentPage === "add" ? pageStyle : pointer} onClick={addClick}>
+        <link to="/add">add recipes</link></li>
       </ul>
     </div>
   );
