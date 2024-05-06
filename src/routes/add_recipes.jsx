@@ -1,7 +1,8 @@
 import Input from "../components/input"
-import { useState } from "react"
+import { useContext, useState } from "react"
 import TrashSvg from "../components/svg/trash_svg"
 import PlusSvg from "../components/svg/plus_svg"
+import { AuthContext } from "../context/authContext"
 
 function IngredientInput(props) {
     // name = "step-2"
@@ -22,6 +23,7 @@ export default function AddRecipe() {
     const [uploadedImage, setUploadedImage] = useState("")
 
     const [ingredientTags, updateIngredientTags] = useState([])
+    const {token}  = useContext(AuthContext)
 
     const handleImageChange = (event) => {
 
@@ -55,13 +57,6 @@ export default function AddRecipe() {
         // get the data image from the form
         const form = new FormData(event.target);
 
-        console.log(form.get("images"));
-        console.log(form.get("recipeName"));
-        console.log(form.get("category"));
-        console.log(form.get("time"));
-        console.log(form.get("serves"));
-        console.log(form.get("description"));
-
         // get all the tags which starts with name step
         const tags = Array.from(form.keys()).filter(name => name.startsWith("step-"));
         
@@ -83,7 +78,8 @@ export default function AddRecipe() {
             method: "POST",
             body: form,
             headers: {
-                "Content-Type": "multipart/form-data"
+                "Content-Type": "multipart/form-data",
+                Authorization: "Bearer " + token
             }
         }).then(response => response.json()).then(data => {
             console.log(data)

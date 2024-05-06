@@ -13,8 +13,8 @@ import AddRecipe from './routes/add_recipes.jsx';
 import Auth from './routes/auth.jsx';
 import Login from './components/login.jsx';
 import Signup from './components/signup.jsx';
-import { ThemeProvider } from './routes/context/themeContext.jsx';
-import { AuthProvider } from './routes/context/authContext.jsx';
+import { ThemeProvider } from './context/themeContext.jsx';
+import { AuthProvider } from './context/authContext.jsx';
 import ProtectedRoute from './components/protected_route.jsx';
 
 const browserRouter = createBrowserRouter(

@@ -1,6 +1,6 @@
-import Home from "./home.jsx";
+import HomeComp from "../components/home"
 
 export default function HomeRoute(){
-    return<Home/>
+    return <HomeComp/>
 }
 

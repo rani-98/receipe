@@ -1,17 +1,17 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import Header from "./Header.jsx";
-import Card from "./card.jsx";
+import Header from "./Header";
+import Card from "./card";
+import { AuthContext } from "../context/authContext";
 
 
-
-
-const url = " http://127.0.0.1:8000/recipes";
+const url = "https://widespread-mellisent-vj0.koyeb.app/recipes"
 
 
 export default function Recipes() {
     const [searchParams, setSearchParams] = useSearchParams()
     const [recipes, setRecipes] = useState([])
+    const {token} = useContext(AuthContext)
 
     const changeRecipe = (type) => {
         setSearchParams({ type: type })
@@ -29,7 +29,11 @@ export default function Recipes() {
         // then function will be called when the promise is resolved
         // and then function takes a callback function as an argument
         // the callback function will be called when the promise is resolved with the data returned by the server
-        fetch(url).then((response) => {
+        fetch(url, {
+            headers : {
+                Authorization: "Bearer " + token
+            }
+        }).then((response) => {
             return response.json() // here we are trying to access the json data from the response which is stored in the memory (RAM). 
             // To access memory from ram we need to use json() function, which will ask the operating system to give the data stored in the memory
             // Instead javascript waiting for the data in memory, it will return a promise which will be resolved when the data is available from the memory by the operating system.

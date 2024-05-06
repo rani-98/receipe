@@ -1,11 +1,13 @@
 import { useContext, useState } from "react"
-import { Link, Navigate, useNavigate} from "react-router-dom"
-import EyeslashSvg from "./svg/eye_slash"
+import { Link, Navigate, useNavigate} from "react-router-dom"                                                                                 
+import EyeSlashSvg from "./svg/eye_slash"   
 import EyeSvg from "./svg/eye"
 import { AuthContext } from "../context/authContext"
 
 export default function Login() {
-    const url = "https://widespread-mellisent-vj0.koyeb.app/login"
+    const url =  "https://widespread-mellisent-vj0.koyeb.app/login"
+    
+    
     const [hidden, setHidden] = useState(true)
     const navigation = useNavigate()
     const {token, login} = useContext(AuthContext)
@@ -92,7 +94,7 @@ export default function Login() {
 
                             <span className="absolute inset-y-0 end-0 grid place-content-center px-4" onClick={() => setHidden(!hidden)}>
                                 {
-                                    hidden ? <EyeslashSvg/> : <EyeSvg/>
+                                    hidden ? <EyeSlashSvg/> : <EyeSvg/>
                                 }
                             </span>
                         </div>

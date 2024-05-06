@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useContext } from "react";
-import { ThemeContext } from "./routes/context/themeContext";
+import { ThemeContext } from "../context/themeContext";
 
 
 function Card(props) {
@@ -55,3 +55,5 @@ function Card(props) {
         </Link>
     )
 }
+
+export default Card;
